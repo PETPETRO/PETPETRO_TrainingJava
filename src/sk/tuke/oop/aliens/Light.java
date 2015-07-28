@@ -14,6 +14,8 @@ import sk.tuke.oop.framework.Animation;
  */
 public class Light extends AbstractActor{
     
+    
+    private boolean status;
     private boolean electricity;
     private Reactor reactor;
     Animation lightOff=new Animation("resources/images/light_off.png", 16, 16, 10);
@@ -21,18 +23,26 @@ public class Light extends AbstractActor{
     
     public Light(){
         setAnimation(lightOff);
+        status=false;
     }
     
    
     public void toggle(){
         if(electricity==true ){
-           if(getAnimation()==lightOff){ 
-               setAnimation(lightOn);}
-           else{setAnimation(lightOff);}
-        }
+            if(status==false){
+                status=true;
+                setAnimation(lightOn);
+           
+           
+            }else if(status==true){
+                status=false;
+                setAnimation(lightOff);
+            }
+            }
         
         if(electricity==false){
             setAnimation(lightOff);
+            status=true;
     }
         
     }
@@ -40,11 +50,12 @@ public class Light extends AbstractActor{
     
     public void  setElectricityFlow(boolean state){
         this.electricity=state;
-
-//        if(this.electricity==true && state==true){
-//            setAnimation(lightOn);
-//        }else{
-//            setAnimation(lightOff);}
+        if(this.electricity==true && this.status==true){
+            setAnimation(lightOn);
+        }
+        else{
+            setAnimation(lightOff);
+        }
       
     }
 }

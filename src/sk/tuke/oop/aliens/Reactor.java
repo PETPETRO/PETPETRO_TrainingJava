@@ -151,7 +151,6 @@ public class Reactor extends AbstractActor {
             state = false;
             getAnimation().stop();
             light.setElectricityFlow(false);
-            light.setAnimation(light.lightOff);
         
     }
 
